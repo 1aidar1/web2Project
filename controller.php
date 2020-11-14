@@ -33,7 +33,7 @@ if (empty($_POST['page'])) {
                 }
                 if (check_validity($handle, $password)) {
                     $isSigned = true;
-                    $display_type = 'signed';
+                    $display_type = 'no-sign-in';
                 } else {
                     $isSigned = false;
                     $display_type = 'sign-in';
