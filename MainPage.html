@@ -6,13 +6,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <style>
         body {
-            max-width: 99%;
+            max-width: 100%;
         }
 
         div {
@@ -176,11 +177,11 @@
             <!-- Register Modal Confirmation-->
             <div id="register-confirm-modal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
-                    <!-- Modal content-->
+                    <!-- Modal  content-->
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title"><b>Post a Question</b></h4>
+                            <h4 class="modal-title"><b>Registration Complete </b></h4>
                         </div>
                     </div>
 
@@ -207,7 +208,7 @@
         // jQuery post
         $.post(url, query, function (data, status) {
             var d = JSON.parse(data);
-            if(d.isSigned == 'true'){
+            if(d.isSigned == true){
                 $('#div-signed').css('display','block');
                 $('#div-unsigned').css('display','none');
                 hide();
@@ -222,6 +223,7 @@
     });
 
     $('#btn-form-register').click(() => {
+        
         var url = 'controller.php';
         var query = {
             page: 'MainPage',
@@ -237,8 +239,10 @@
             if(d.display == 'no-sign-in'){
                 hide();
                 $('#register-confirm-modal').modal('show');
+                setTimeout(()=>{
+                    $('#register-confirm-modal').modal('hide');
+                },500);
             }
-            alert(data);
         });
     });
 
