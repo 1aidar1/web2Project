@@ -82,4 +82,7 @@ if (empty($_POST['page'])) {
                 break;
         }
     }
+    else if($page == 'UserPage'){
+
+    }
 }

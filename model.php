@@ -38,7 +38,9 @@ function get_user_id($handle)
 function check_validity($handle, $password)
 {
     global $conn;
-    $sql = "select Handle,Password from ProjectUsers where Handle = '$handle' and Password ='$password'";
+    $hash_password = hash('SHA256',$password);
+
+    $sql = "select Handle,Password from ProjectUsers where Handle = '$handle' and Password ='$hash_password'";
 
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0)
@@ -63,7 +65,8 @@ function join_a_user($UIN, $handle, $password, $tel)
     if (check_existence_handle($handle) || check_existence_UIN($UIN) || !isTel($tel)) {
         return false;
     } else {
-        $sql = "insert into ProjectUsers value (NULL,'$UIN','$handle','$password', '$tel','$current_date')";
+        $hash_password = hash('SHA256',$password);
+        $sql = "insert into ProjectUsers value (NULL,'$UIN','$handle','$hash_password', '$tel','$current_date')";
         if (mysqli_query($conn, $sql)) {
             return true;
         } else return false;
