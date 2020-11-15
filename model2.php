@@ -14,12 +14,12 @@ function change_handle($handle,$id){
 }
 function change_password($password,$id){
     global $conn;
-    $sql = "update ProjectUsers Set Handle = '$password' where ID = '$id'";
+    $sql = "update ProjectUsers Set Password = '$password' where ID = '$id'";
     return mysqli_query($conn,$sql); 
 }
 function change_tel($tel,$id){
     global $conn;
-    $sql = "update ProjectUsers Set Handle = '$tel' where ID = '$id'";
+    $sql = "update ProjectUsers Set Tel = '$tel' where ID = '$id'";
     return mysqli_query($conn,$sql); 
 }
 ?>

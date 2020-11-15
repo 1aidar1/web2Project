@@ -18,7 +18,7 @@
             <div class="col-md-10">
 
             </div>
-            <div id="div-unsigned"  >
+            <div id="div-unsigned">
                 <div class="col-md-1">
                     <button class="btn btn-default " id='btn-register'>Register</button>
                 </div>
@@ -26,8 +26,14 @@
                     <button class="btn btn-default" id='btn-login'>Login</button>
                 </div>
             </div>
-            <div id="div-signed" class="col-md-2">
-                <button><a href="UserPage.php">Your Profile</a></button>
+            <div id="div-signed" class="col-md-2 dropdown">
+                <button data-toggle="dropdown" class="btn dropdown-toggle">Your
+                    Profile <span class="caret"></span></button>
+
+                <ul class="dropdown-menu">
+                    <li><a href="UserPage.php" id='btn-settings'>Settings</a></li>
+                    <li><p id='btn-logout'>Logout</p></li>
+                </ul>
             </div>
 
         </div>
@@ -130,22 +136,23 @@
         // jQuery post
         $.post(url, query, function (data, status) {
             var d = JSON.parse(data);
-            if(d.isSigned == true){
-                $('#div-signed').css('display','block');
-                $('#div-unsigned').css('display','none');
+            if (d.isSigned == true) {
+                $('#div-signed').css('display', 'block');
+                $('#div-unsigned').css('display', 'none');
                 hide();
+                $('#content').html(d.ID);
             }
-            else{
-                $('#div-signed').css('display','none');
-                $('#div-unsigned').css('display','block');  
+            else {
+                $('#div-signed').css('display', 'none');
+                $('#div-unsigned').css('display', 'block');
             }
             alert(d.isSigned);
-            
+
         });
     });
 
     $('#btn-form-register').click(() => {
-        
+
         var url = 'controller.php';
         var query = {
             page: 'MainPage',
@@ -158,12 +165,12 @@
         // jQuery register post
         $.post(url, query, function (data, status) {
             var d = JSON.parse(data);
-            if(d.display == 'no-sign-in'){
+            if (d.display == 'no-sign-in') {
                 hide();
                 $('#register-confirm-modal').modal('show');
-                setTimeout(()=>{
+                setTimeout(() => {
                     $('#register-confirm-modal').modal('hide');
-                },500);
+                }, 500);
             }
         });
     });
@@ -197,6 +204,18 @@
         $('#sign-in-modal').css('display', 'block');
         $('#register-modal').css('display', 'none');
         $('#blanket').css('display', 'block');
+    });
+    $('btn-logout').click(() => {
+        var url = 'controller.php';
+        var query = {
+            page: 'MainPage',
+            command: 'SignOut'
+        };
+        // jQuery register post
+        $.post(url, query, function (data, status) {
+            alert(status);
+            
+        });
     });
 </script>
 

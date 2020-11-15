@@ -19,17 +19,10 @@
             <div class="col-md-10">
 
             </div>
-            <div class="col-md-2 dropdown" style="display: flex;">
-                <button data-toggle="dropdown" class="btn dropdown-toggle"
-                    style="align-items:stretch; margin-left:auto;margin-right: auto;">Your
-                    Profile <span class="caret"></span></button>
-                    
-                <ul class="dropdown-menu">
-                    <li><a href="UserPage.php" id='btn-settings'>Settings</a></li>
-                    <li><a id='btn-logout'>Logout</a></li>
-                </ul>
+            <div id="div" class="col-md-2" style="display: flex;">
+                <button style="align-items:stretch; margin-left:auto;margin-right: auto;"><a href="UserPage.php">Your
+                        Profile</a></button>
             </div>
-            
 
         </div>
 
@@ -62,8 +55,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" id="btn-submit-UIN" data-dismiss="modal"
-                            class="btn btn-default">Submit</button>
+                        <button type="button" id="btn-submit-UIN" data-dismiss="modal" class="btn btn-default">Submit</button>
                     </div>
                 </div>
 
@@ -93,8 +85,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" id="btn-submit-handle" data-dismiss="modal"
-                            class="btn btn-default">Submit</button>
+                        <button type="button" id="btn-submit-handle" data-dismiss="modal" class="btn btn-default">Submit</button>
                     </div>
                 </div>
 
@@ -127,8 +118,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" id="btn-submit-password" data-dismiss="modal"
-                            class="btn btn-default">Submit</button>
+                        <button type="button" id="btn-submit-password" data-dismiss="modal" class="btn btn-default">Submit</button>
                     </div>
                 </div>
 
@@ -158,8 +148,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" id="btn-submit-tel" data-dismiss="modal"
-                            class="btn btn-default">Submit</button>
+                        <button type="button" id="btn-submit-tel" data-dismiss="modal" class="btn btn-default">Submit</button>
                     </div>
                 </div>
 
@@ -181,14 +170,14 @@
         $('#change-password-modal').modal('show');
     });
 
-    $('#btn-change-tel').click(() => {
+    $('#btn-change-tel').click(()=>{
         $('#change-tel-modal').modal('show');
     });
 
-    $('#btn-submit-UIN').click(() => {
+    $('#btn-submit-UIN').click(()=>{
         var new_UIN = $('#new-UIN').val();
         $('#new-UIN').val('');
-
+        
         var url = 'controller.php';
         var query = {
             page: 'UserPage',
@@ -197,14 +186,15 @@
         };
         // jQuery post
         $.post(url, query, function (data, status) {
-            alert(data);
+            var d = JSON.parse(data);
+            
         });
     });
 
-    $('#btn-submit-handle').click(() => {
-        var new_handle = $('#new-handle').val();
+    $('#btn-submit-handle').click(()=>{
+        var handle = $('#new-handle').val();
         $('#new-handle').val('');
-
+        
         var url = 'controller.php';
         var query = {
             page: 'UserPage',
@@ -213,15 +203,15 @@
         };
         // jQuery post
         $.post(url, query, function (data, status) {
-            alert(data);
-
+            var d = JSON.parse(data);
+            
         });
     });
 
-    $('#btn-submit-password').click(() => {
+    $('#btn-submit-password').click(()=>{
         var new_password = $('#new-password').val();
         $('#new-password').val('');
-
+        
         var url = 'controller.php';
         var query = {
             page: 'UserPage',
@@ -230,15 +220,15 @@
         };
         // jQuery post
         $.post(url, query, function (data, status) {
-            alert(data);
-
+            var d = JSON.parse(data);
+            
         });
     });
 
-    $('#btn-submit-tel').click(() => {
+    $('#btn-submit-tel').click(()=>{
         var new_tel = $('#new-tel').val();
         $('#new-tel').val('');
-
+        
         var url = 'controller.php';
         var query = {
             page: 'UserPage',
@@ -247,18 +237,7 @@
         };
         // jQuery post
         $.post(url, query, function (data, status) {
-            alert(data);
-
-        });
-    });
-    $('#btn-logout').click(() => {
-        var url = 'controller.php';
-        var query = {
-            page: 'MainPage',
-            command: 'SignOut'
-        };
-        // jQuery register post
-        $.post(url, query, function (data, status) {
+            var d = JSON.parse(data);
             
         });
     });
