@@ -1,0 +1,12 @@
+label + p{
+    color: darkgrey;
+    font-size: 1em;
+}
+label{
+    margin: 0px;
+    font-size: 1.3em;
+}
+.container > .row{
+    display: flex;
+    align-items: center;
+}
